@@ -30,6 +30,14 @@ body {
   line-height: 1.6;
 }
 
+a,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
 header {
   background-color: white;
   box-shadow: var(--shadow);

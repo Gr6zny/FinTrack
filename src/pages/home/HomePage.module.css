@@ -14,61 +14,6 @@
   padding: 0 20px;
 }
 
-/* Header */
-.header {
-  background-color: white;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 0;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--primary);
-  text-decoration: none;
-}
-
-.logo i {
-  font-size: 2rem;
-}
-
-.navLinks {
-  display: flex;
-  gap: 30px;
-  list-style: none;
-}
-
-.navLinks a {
-  text-decoration: none;
-  color: var(--dark);
-  font-weight: 500;
-  transition: var(--transition);
-  padding: 8px 12px;
-  border-radius: 8px;
-}
-
-.navLinks a:hover {
-  color: var(--primary);
-}
-
-.navActions {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
 /* Кнопки */
 .btn {
   padding: 12px 28px;
@@ -469,7 +414,6 @@
   );
   color: white;
   text-align: center;
-  border-radius: 0 0 var(--border-radius) var(--border-radius);
 }
 
 .cta h2 {
@@ -489,83 +433,6 @@
   margin-top: 20px;
   font-size: 0.9rem;
   opacity: 0.8;
-}
-
-/* Footer */
-.footer {
-  background-color: var(--dark);
-  color: white;
-  padding: 70px 0 30px;
-}
-
-.footerContent {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 40px;
-  margin-bottom: 40px;
-}
-
-.footerColumn h4 {
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin-bottom: 20px;
-  color: white;
-}
-
-.footerDescription {
-  color: #adb5bd;
-  margin-bottom: 20px;
-}
-
-.footerLinks {
-  list-style: none;
-}
-
-.footerLinks li {
-  margin-bottom: 12px;
-}
-
-.footerLinks a {
-  color: #adb5bd;
-  text-decoration: none;
-  transition: var(--transition);
-}
-
-.footerLinks a:hover {
-  color: white;
-  padding-left: 5px;
-}
-
-.socialLinks {
-  display: flex;
-  gap: 15px;
-  margin-top: 20px;
-}
-
-.socialLinks a {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  text-decoration: none;
-  transition: var(--transition);
-}
-
-.socialLinks a:hover {
-  background-color: var(--primary);
-  transform: translateY(-3px);
-}
-
-.copyright {
-  text-align: center;
-  padding-top: 30px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  color: #adb5bd;
-  font-size: 0.9rem;
 }
 
 /* Анимации */
