@@ -1,0 +1,17 @@
+footer {
+  background-color: var(--dark);
+  color: white;
+  padding: 30px 0;
+  margin-top: 50px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.copyright {
+  color: #adb5bd;
+  font-size: 0.9rem;
+}

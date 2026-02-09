@@ -1,6 +1,7 @@
 :root {
   --primary: #4361ee;
   --primary-dark: #3a56d4;
+  --primary-light: #eef2ff;
   --secondary: #7209b7;
   --success: #4cc9f0;
   --danger: #f72585;
@@ -12,6 +13,7 @@
   --light-gray: #e9ecef;
   --border-radius: 12px;
   --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.1);
   --transition: all 0.3s ease;
 }
 
