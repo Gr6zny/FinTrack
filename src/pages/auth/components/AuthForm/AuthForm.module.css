@@ -1,0 +1,187 @@
+/* AuthForm.module.css */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.formGroup {
+  composes: formGroup from "../common/index.module.css";
+}
+
+.label {
+  composes: label from "../common/index.module.css";
+}
+
+.inputWrapper {
+  composes: inputWrapper from "../common/index.module.css";
+}
+
+.inputIcon {
+  composes: inputIcon from "../common/index.module.css";
+}
+
+.input {
+  composes: input from "../common/index.module.css";
+}
+
+.error {
+  composes: error from "../common/index.module.css";
+}
+
+.errorMessage {
+  composes: errorMessage from "../common/index.module.css";
+}
+
+.passwordToggle {
+  composes: passwordToggle from "../common/index.module.css";
+}
+
+.checkbox {
+  composes: checkbox from "../common/index.module.css";
+}
+
+/* Form Row */
+.formRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 8px 0 4px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.forgotLink {
+  composes: forgotLink from "../common/index.module.css";
+  font-size: 0.9rem;
+}
+
+/* Submit Button */
+.submitButton {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 16px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  font-family: inherit;
+}
+
+.submitButton::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.6s ease,
+    height 0.6s ease;
+}
+
+.submitButton:hover:not(:disabled)::before {
+  width: 300px;
+  height: 300px;
+}
+
+.submitButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+}
+
+.submitButton:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.submitButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  background: linear-gradient(135deg, #a0a0a0 0%, #808080 100%);
+}
+
+.submitButton.loading {
+  cursor: wait;
+}
+
+.submitButton i {
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.submitButton:hover i {
+  transform: translateX(4px);
+}
+
+/* Password Strength */
+.passwordStrength {
+  composes: passwordStrength from "../common/index.module.css";
+}
+
+.strengthBar {
+  composes: strengthBar from "../common/index.module.css";
+}
+
+.strengthFill {
+  composes: strengthFill from "../common/index.module.css";
+}
+
+/* Terms Link */
+.termsLink {
+  composes: termsLink from "../common/index.module.css";
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  .form {
+    gap: 16px;
+  }
+
+  .submitButton {
+    padding: 14px 20px;
+    font-size: 0.95rem;
+  }
+
+  .formRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .forgotLink {
+    align-self: flex-end;
+  }
+}
+
+/* Animation for button */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(102, 126, 234, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(102, 126, 234, 0);
+  }
+}
+
+.submitButton:focus {
+  animation: pulse 1.5s infinite;
+}

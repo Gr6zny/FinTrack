@@ -1,0 +1,189 @@
+/* SocialAuth.module.css */
+
+.divider {
+  position: relative;
+  text-align: center;
+  margin: 30px 0 20px;
+}
+
+.divider::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #e9ecef,
+    #e9ecef,
+    #e9ecef,
+    transparent
+  );
+}
+
+.divider span {
+  position: relative;
+  background-color: white;
+  padding: 0 15px;
+  color: #6c757d;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.socialAuth {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.socialButton {
+  padding: 14px 12px;
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #212529;
+  font-family: inherit;
+  position: relative;
+  overflow: hidden;
+}
+
+.socialButton::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.6s ease,
+    height 0.6s ease;
+}
+
+.socialButton:hover:not(:disabled)::before {
+  width: 300px;
+  height: 300px;
+}
+
+.socialButton:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.socialButton:active:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.socialButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.socialButton i {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.socialButton:hover i {
+  transform: scale(1.1);
+}
+
+/* Google */
+.socialButton.google {
+  border-color: #ea4335;
+  color: #ea4335;
+}
+
+.socialButton.google:hover {
+  background-color: #ea4335;
+  border-color: #ea4335;
+  color: white;
+}
+
+/* Yandex */
+.socialButton.yandex {
+  border-color: #ffcc00;
+  color: #000;
+}
+
+.socialButton.yandex:hover {
+  background-color: #ffcc00;
+  border-color: #ffcc00;
+  color: #000;
+}
+
+/* VK */
+.socialButton.vk {
+  border-color: #4a76a8;
+  color: #4a76a8;
+}
+
+.socialButton.vk:hover {
+  background-color: #4a76a8;
+  border-color: #4a76a8;
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .socialAuth {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .socialButton {
+    padding: 12px;
+    justify-content: center;
+  }
+
+  .socialButton span {
+    display: inline;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+  .socialButton span {
+    display: none;
+  }
+
+  .socialButton i {
+    font-size: 1.4rem;
+  }
+}
+
+@media (min-width: 993px) {
+  .socialButton span {
+    display: inline;
+  }
+}
+
+/* Animation for button press */
+@keyframes buttonPop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.socialButton:active:not(:disabled) {
+  animation: buttonPop 0.2s ease;
+}

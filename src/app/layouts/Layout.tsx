@@ -1,8 +1,8 @@
 import { Outlet, useLocation } from "react-router";
 import Footer from "./Footer/Footer";
 import s from "./index.module.css";
-import HeaderHome from "./Header/HeaderHome";
-import HeaderMain from "./Header/HeaderMain";
+import HeaderHome from "./Header/HeaderHome/HeaderHome";
+import HeaderMain from "./Header/HeaderMain/HeaderMain";
 
 const Layout = () => {
   const url = useLocation();
@@ -10,10 +10,14 @@ const Layout = () => {
 
   return (
     <div>
-      {url.pathname == "/" ? <HeaderHome /> : <HeaderMain />}
+      {url.pathname === "/" && <HeaderHome />}
+
+      {url.pathname !== "/" && url.pathname !== "/auth" && <HeaderMain />}
+
       <div className={s.minH}>
-        <Outlet></Outlet>
+        <Outlet />
       </div>
+
       <Footer />
     </div>
   );

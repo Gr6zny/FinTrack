@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import s from "./home.module.css";
 
 const HeaderHome = () => {
@@ -51,9 +52,11 @@ const HeaderHome = () => {
           </ul>
 
           <div className={s.navActions}>
-            <button className={`${s.btn} ${s.btnOutline}`} id="loginBtn">
-              Войти
-            </button>
+            <Link to="/auth">
+              <button className={`${s.btn} ${s.btnOutline}`} id="loginBtn">
+                Войти
+              </button>
+            </Link>
             <button className={`${s.btn} ${s.btnPrimary}`} id="signupBtn">
               Начать бесплатно
             </button>
