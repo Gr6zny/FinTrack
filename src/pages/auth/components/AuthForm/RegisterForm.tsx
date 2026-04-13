@@ -2,21 +2,19 @@
 import React from "react";
 import { InputField } from "../common/InputField";
 import { PasswordField } from "../common/PasswordField";
-import { SelectField } from "../common/SelectField";
-import { CheckboxField } from "../common/CheckboxField";
-import { CURRENCIES } from "../../constants/auth.constants";
+// import { SelectField } from "../common/SelectField";
+// import { CheckboxField } from "../common/CheckboxField";
+// import { CURRENCIES } from "../../constants/auth.constants";
 
 import s from "./AuthForm.module.css";
 import type { PasswordStrengthInfo } from "../../types/auth.types";
 
 interface RegisterFormProps {
   data: {
-    fullName: string;
+    username: string;
     email: string;
     password: string;
-    confirmPassword: string;
-    currency: string;
-    agreeTerms: boolean;
+    confirmPassword?: string;
   };
   errors: Record<string, string>;
   isLoading: boolean;
@@ -43,13 +41,13 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
     <form onSubmit={onSubmit} className={s.form}>
       <InputField
         label="Полное имя"
-        id="fullName"
-        name="fullName"
+        id="username"
+        name="username"
         type="text"
         icon="user"
-        value={data.fullName}
+        value={data.username}
         onChange={onChange}
-        error={errors.fullName}
+        error={errors.username}
         disabled={isLoading}
         placeholder="Иван Иванов"
       />
@@ -90,7 +88,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
         showStrength={false}
       />
 
-      <SelectField
+      {/* <SelectField
         label="Основная валюта"
         id="currency"
         name="currency"
@@ -99,9 +97,9 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
         onChange={onChange}
         options={CURRENCIES}
         disabled={isLoading}
-      />
+      /> */}
 
-      <CheckboxField
+      {/* <CheckboxField
         name="agreeTerms"
         checked={data.agreeTerms}
         onChange={onChange}
@@ -115,7 +113,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
             </a>
           </>
         }
-      />
+      /> */}
 
       <button
         type="submit"

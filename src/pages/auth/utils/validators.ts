@@ -1,8 +1,5 @@
-import type {
-  FormErrors,
-  LoginFormData,
-  RegisterFormData,
-} from "../types/auth.types";
+import { RegisterRequest } from "../types/api.types";
+import type { FormErrors, LoginFormData } from "../types/auth.types";
 
 export const validateEmail = (email: string): string | null => {
   if (!email) return "Email обязателен";
@@ -37,12 +34,8 @@ export const validateLoginForm = (data: LoginFormData): FormErrors => {
   return errors;
 };
 
-export const validateRegisterForm = (data: RegisterFormData): FormErrors => {
+export const validateRegisterForm = (data: RegisterRequest): FormErrors => {
   const errors: FormErrors = {};
-
-  if (!data.fullName.trim()) {
-    errors.fullName = "Имя обязательно";
-  }
 
   const emailError = validateEmail(data.email);
   if (emailError) errors.email = emailError;
@@ -50,13 +43,10 @@ export const validateRegisterForm = (data: RegisterFormData): FormErrors => {
   const passwordError = validateStrongPassword(data.password);
   if (passwordError) errors.password = passwordError;
 
-  if (data.password !== data.confirmPassword) {
-    errors.confirmPassword = "Пароли не совпадают";
+  // Добавьте другие валидации здесь
+  if (!data.username) {
+    errors.username = "Имя пользователя обязательно";
   }
 
-  if (!data.agreeTerms) {
-    errors.agreeTerms = "Необходимо согласие с условиями";
-  }
-
-  return errors;
+  return errors; // ✅ Всегда возвращаем errors
 };

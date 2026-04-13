@@ -11,6 +11,8 @@ import { RegisterForm } from "./components/AuthForm/RegisterForm";
 import { SocialAuth } from "./components/SocialAuth/SocialAuth";
 import { Message } from "./components/common/Message";
 import s from "./index.module.css";
+import { useAppDispatch } from "../../store/useAppDispatch";
+import { loginUser, registerUser } from "./userThunk";
 
 const AuthPage: React.FC = () => {
   const { mode, isAnimating, toggleMode, setLoginMode } = useAuthMode();
@@ -27,6 +29,8 @@ const AuthPage: React.FC = () => {
   } = useAuthForm();
 
   const { strengthInfo, updatePassword } = usePasswordStrength();
+
+  const dispatch = useAppDispatch();
 
   const {
     isLoading,
@@ -52,13 +56,22 @@ const AuthPage: React.FC = () => {
   const handleLoginSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateLogin()) return;
-    await submitLogin(loginData);
+    const data = { identifier: loginData.email, password: loginData.password };
+    console.log(loginData, data);
+    dispatch(loginUser(data));
+    await submitLogin();
   };
 
   const handleRegisterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateRegister()) return;
-    await submitRegister(registerData);
+    const data = {
+      username: registerData.username,
+      email: registerData.email,
+      password: registerData.password,
+    };
+    dispatch(registerUser(data));
+    await submitRegister();
   };
 
   const handleToggleMode = () => {

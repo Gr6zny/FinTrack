@@ -1,11 +1,8 @@
 // hooks/useAuthForm.ts
 import { useState, useCallback } from "react";
 import { validateLoginForm, validateRegisterForm } from "../utils/validators";
-import type {
-  FormErrors,
-  LoginFormData,
-  RegisterFormData,
-} from "../types/auth.types";
+import type { FormErrors, LoginFormData } from "../types/auth.types";
+import { RegisterRequest } from "../types/api.types";
 
 const initialLoginData: LoginFormData = {
   email: "",
@@ -13,19 +10,17 @@ const initialLoginData: LoginFormData = {
   remember: false,
 };
 
-const initialRegisterData: RegisterFormData = {
-  fullName: "",
+const initialRegisterData: RegisterRequest = {
+  username: "",
   email: "",
   password: "",
   confirmPassword: "",
-  currency: "RUB",
-  agreeTerms: false,
 };
 
 export const useAuthForm = () => {
   const [loginData, setLoginData] = useState<LoginFormData>(initialLoginData);
   const [registerData, setRegisterData] =
-    useState<RegisterFormData>(initialRegisterData);
+    useState<RegisterRequest>(initialRegisterData);
   const [loginErrors, setLoginErrors] = useState<FormErrors>({});
   const [registerErrors, setRegisterErrors] = useState<FormErrors>({});
 

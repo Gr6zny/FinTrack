@@ -6,7 +6,6 @@ import HeaderMain from "./Header/HeaderMain/HeaderMain";
 
 const Layout = () => {
   const url = useLocation();
-  console.log(url.pathname);
 
   return (
     <div>
