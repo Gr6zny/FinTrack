@@ -1,0 +1,19 @@
+.dashboardSection {
+  margin-bottom: 30px;
+}
+
+.recent-transactions {
+  margin-top: 30px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+}

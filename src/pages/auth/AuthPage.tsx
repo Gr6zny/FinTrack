@@ -11,8 +11,6 @@ import { RegisterForm } from "./components/AuthForm/RegisterForm";
 import { SocialAuth } from "./components/SocialAuth/SocialAuth";
 import { Message } from "./components/common/Message";
 import s from "./index.module.css";
-import { useAppDispatch } from "../../store/useAppDispatch";
-import { loginUser, registerUser } from "./userThunk";
 
 const AuthPage: React.FC = () => {
   const { mode, isAnimating, toggleMode, setLoginMode } = useAuthMode();
@@ -30,10 +28,8 @@ const AuthPage: React.FC = () => {
 
   const { strengthInfo, updatePassword } = usePasswordStrength();
 
-  const dispatch = useAppDispatch();
-
   const {
-    isLoading,
+    loading,
     successMessage,
     error,
     submitLogin,
@@ -58,8 +54,7 @@ const AuthPage: React.FC = () => {
     if (!validateLogin()) return;
     const data = { identifier: loginData.email, password: loginData.password };
     console.log(loginData, data);
-    dispatch(loginUser(data));
-    await submitLogin();
+    await submitLogin(data);
   };
 
   const handleRegisterSubmit = async (e: React.FormEvent) => {
@@ -70,8 +65,7 @@ const AuthPage: React.FC = () => {
       email: registerData.email,
       password: registerData.password,
     };
-    dispatch(registerUser(data));
-    await submitRegister();
+    await submitRegister(data);
   };
 
   const handleToggleMode = () => {
@@ -121,14 +115,14 @@ const AuthPage: React.FC = () => {
             <button
               className={`${s.toggleBtn} ${mode === "login" ? s.active : ""}`}
               onClick={() => mode !== "login" && handleToggleMode()}
-              disabled={isLoading}
+              disabled={loading}
             >
               Вход
             </button>
             <button
               className={`${s.toggleBtn} ${mode === "register" ? s.active : ""}`}
               onClick={() => mode !== "register" && handleToggleMode()}
-              disabled={isLoading}
+              disabled={loading}
             >
               Регистрация
             </button>
@@ -139,7 +133,7 @@ const AuthPage: React.FC = () => {
             <LoginForm
               data={loginData}
               errors={loginErrors}
-              isLoading={isLoading}
+              isLoading={loading}
               showPassword={showPassword}
               onShowPasswordToggle={() => setShowPassword(!showPassword)}
               onChange={handleLoginChange}
@@ -150,7 +144,7 @@ const AuthPage: React.FC = () => {
             <RegisterForm
               data={registerData}
               errors={registerErrors}
-              isLoading={isLoading}
+              isLoading={loading}
               showPassword={showPassword}
               showConfirmPassword={showConfirmPassword}
               passwordStrength={strengthInfo}
@@ -164,7 +158,7 @@ const AuthPage: React.FC = () => {
           )}
 
           {/* Социальная авторизация */}
-          <SocialAuth isLoading={isLoading} />
+          <SocialAuth isLoading={loading} />
 
           {/* Ссылка переключения */}
           <div className={s.authFooter}>
@@ -174,7 +168,7 @@ const AuthPage: React.FC = () => {
                 <button
                   onClick={handleToggleMode}
                   className={s.linkBtn}
-                  disabled={isLoading}
+                  disabled={loading}
                 >
                   Зарегистрироваться
                 </button>
@@ -185,7 +179,7 @@ const AuthPage: React.FC = () => {
                 <button
                   onClick={handleToggleMode}
                   className={s.linkBtn}
-                  disabled={isLoading}
+                  disabled={loading}
                 >
                   Войти
                 </button>

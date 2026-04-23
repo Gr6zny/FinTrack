@@ -1,6 +1,9 @@
 // hooks/useAuthSubmit.ts
 import { useState, useCallback } from "react";
 import { useNavigate } from "react-router";
+import { useAppSelector } from "../../../store/services/useAppSelector";
+import { useAppDispatch } from "../../../store/useAppDispatch";
+import { loginUser, registerUser } from "../userThunk";
 
 interface UseAuthSubmitProps {
   onSuccess?: (message: string) => void;
@@ -10,65 +13,59 @@ interface UseAuthSubmitProps {
 }
 
 export const useAuthSubmit = (props: UseAuthSubmitProps = {}) => {
-  const [isLoading, setIsLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
-  const [error, setError] = useState("");
+  const { error, loading } = useAppSelector((store) => store.user);
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
-  const submitLogin = useCallback(async () => {
-    setIsLoading(true);
-    setError("");
+  const submitLogin = useCallback(
+    async (credentials: { identifier: string; password: string }) => {
+      const result = await dispatch(loginUser(credentials));
 
-    try {
-      // Имитация API запроса
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      if (loginUser.fulfilled.match(result)) {
+        const message = "Успешный вход! Перенаправление...";
+        setSuccessMessage(message);
+        props.onSuccess?.(message);
+        props.onLoginSuccess?.();
 
-      const message = "Успешный вход! Перенаправление...";
-      setSuccessMessage(message);
-      props.onSuccess?.(message);
-      props.onLoginSuccess?.();
+        // Редирект через 2 секунды
+        setTimeout(() => {
+          navigate("/main");
+        }, 2000);
+      }
+    },
+    [dispatch, navigate, props],
+  );
 
-      // Редирект через 2 секунды
-      setTimeout(() => {
-        navigate("/main");
-      }, 2000);
-    } catch (err) {
-      const errorMessage = `Неверный email или пароль ${err}`;
-      setError(errorMessage);
-      props.onError?.(errorMessage);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [props, navigate]);
+  const submitRegister = useCallback(
+    async (credentials: {
+      username: string;
+      email: string;
+      password: string;
+      confirmPassword?: string;
+    }) => {
+      const result = await dispatch(registerUser(credentials));
 
-  const submitRegister = useCallback(async () => {
-    setIsLoading(true);
-    setError("");
-
-    try {
-      const message = "Регистрация успешна! Проверьте email для подтверждения.";
-      setSuccessMessage(message);
-      props.onSuccess?.(message);
-      props.onRegisterSuccess?.();
-      setTimeout(() => {
-        navigate("/main");
-      }, 2000);
-    } catch (err) {
-      const errorMessage = `Ошибка при регистрации. Попробуйте позже. ${err}`;
-      setError(errorMessage);
-      props.onError?.(errorMessage);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [props, navigate]);
+      if (registerUser.fulfilled.match(result)) {
+        const message =
+          "Регистрация успешна! Проверьте email для подтверждения.";
+        setSuccessMessage(message);
+        props.onSuccess?.(message);
+        props.onRegisterSuccess?.();
+        setTimeout(() => {
+          navigate("/main");
+        }, 2000);
+      }
+    },
+    [dispatch, navigate, props],
+  );
 
   const resetMessages = useCallback(() => {
     setSuccessMessage("");
-    setError("");
   }, []);
 
   return {
-    isLoading,
+    loading,
     successMessage,
     error,
     submitLogin,

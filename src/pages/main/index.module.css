@@ -1,0 +1,11 @@
+.mainContent {
+  padding: 30px 0;
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 30px;
+}
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
