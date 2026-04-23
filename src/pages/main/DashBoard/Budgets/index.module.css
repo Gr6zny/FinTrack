@@ -1,0 +1,47 @@
+.budgetProgress {
+  margin-top: 15px;
+}
+
+.budgetItem {
+  margin-bottom: 18px;
+}
+
+.budgetHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.budgetName {
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.budgetAmount {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.progressBar {
+  height: 8px;
+  background-color: var(--light-gray);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: 4px;
+}
+
+.lowUsage {
+  background-color: #28a745;
+}
+
+.mediumUsage {
+  background-color: var(--warning);
+}
+
+.highUsage {
+  background-color: var(--danger);
+}

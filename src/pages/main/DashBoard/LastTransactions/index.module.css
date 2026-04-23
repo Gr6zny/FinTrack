@@ -1,19 +1,83 @@
-.dashboardSection {
-  margin-bottom: 30px;
+.transactionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-.recent-transactions {
-  margin-top: 30px;
-}
-
-.section-header {
+.transactionItem {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 10px;
+  transition: var(--transition);
+  border-left: 5px solid transparent;
 }
 
-.section-title {
-  font-size: 1.5rem;
+.transactionItem:hover {
+  background-color: var(--light-gray);
+}
+
+.expenseTransaction {
+  border-left-color: var(--danger);
+}
+
+.expenseTransaction .transactionIcon {
+  background-color: var(--danger);
+}
+
+.transactionInfo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.transactionIcon {
+  width: 45px;
+  height: 45px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: white;
+}
+
+.transactionDetails h4 {
   font-weight: 600;
+  margin-bottom: 3px;
+}
+
+.transactionDetails p {
+  font-size: 0.9rem;
+  color: var(--gray);
+}
+
+.transactionAmount {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.expenseTransaction {
+  border-left-color: var(--danger);
+}
+
+.expenseTransaction .transactionIcon {
+  background-color: var(--danger);
+}
+
+.incomeTransaction {
+  border-left-color: #28a745;
+}
+
+.incomeTransaction .transactionIcon {
+  background-color: #28a745;
+}
+
+.transferTransaction {
+  border-left-color: var(--info);
+}
+
+.transferTransaction .transactionIcon {
+  background-color: var(--info);
 }

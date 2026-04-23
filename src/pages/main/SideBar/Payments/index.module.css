@@ -1,0 +1,43 @@
+.upcomingPayments .paymentItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--light-gray);
+}
+
+.paymentItem:last-child {
+  border-bottom: none;
+}
+
+.paymentInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.paymentIcon {
+  width: 35px;
+  height: 35px;
+  border-radius: 8px;
+  background-color: rgba(67, 97, 238, 0.1);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.paymentDetails h4 {
+  font-weight: 500;
+  font-size: 0.95rem;
+  margin-bottom: 3px;
+}
+
+.paymentDetails p {
+  font-size: 0.8rem;
+  color: var(--gray);
+}
+
+.paymentAmount {
+  font-weight: 600;
+}

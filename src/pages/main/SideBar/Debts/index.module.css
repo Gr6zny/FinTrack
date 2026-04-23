@@ -1,0 +1,11 @@
+.emptyState {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--gray);
+}
+
+.emptyState i {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  color: var(--light-gray);
+}
