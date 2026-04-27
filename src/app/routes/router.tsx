@@ -5,6 +5,7 @@ import HomePage from "../../pages/home/HomePage";
 import AuthPage from "../../pages/auth/AuthPage";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { MainPage } from "../../pages/main/MainPage";
+import Transaction from "../../pages/transaction/Transaction";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,7 @@ const router = createBrowserRouter([
         ),
       },
       { path: "/auth", element: <AuthPage /> },
+      { path: "/transaction", element: <Transaction /> },
     ],
   },
 ]);

@@ -1,0 +1,76 @@
+.statsCards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.statCard {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: white;
+  border-radius: var(--border-radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.statCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.statIcon {
+  width: 55px;
+  height: 55px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.incomeCard .statIcon {
+  background-color: rgba(40, 167, 69, 0.1);
+  color: #28a745;
+}
+
+.expenseCard .statIcon {
+  background-color: rgba(247, 37, 133, 0.1);
+  color: var(--danger);
+}
+
+.balanceCard .statIcon {
+  background-color: rgba(67, 97, 238, 0.1);
+  color: var(--primary);
+}
+
+.countCard .statIcon {
+  background-color: rgba(76, 201, 240, 0.1);
+  color: var(--success);
+}
+
+.statInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.statLabel {
+  font-size: 0.85rem;
+  color: var(--gray);
+  margin-bottom: 4px;
+}
+
+.statValue {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.positive {
+  color: #28a745;
+}
+
+.negative {
+  color: var(--danger);
+}
