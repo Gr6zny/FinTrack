@@ -7,6 +7,7 @@ import {
   deleteTransaction,
   fetchTransactionStats,
 } from "../transactionThunk";
+import { fetchAccounts } from "../../account/accountThunk";
 import { useAppDispatch } from "../../../store/useAppDispatch";
 import { useAppSelector } from "../../../store/services/useAppSelector";
 import { CreateTransactionData, TransactionFilters } from "../type";
@@ -70,6 +71,7 @@ export const useTransactions = () => {
     async (data: CreateTransactionData) => {
       const result = await dispatch(createTransaction(data));
       if (createTransaction.fulfilled.match(result)) {
+        dispatch(fetchAccounts());
         return result.payload;
       }
       return null;

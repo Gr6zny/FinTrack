@@ -27,7 +27,7 @@ const HeaderMain = () => {
             </li>
             <li>
               <i className="fas fa-wallet"></i>
-              <Link to="/transaction">
+              <Link to="/account">
                 <span>Счета</span>
               </Link>
             </li>

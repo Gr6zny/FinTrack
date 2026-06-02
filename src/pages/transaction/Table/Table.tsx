@@ -101,7 +101,7 @@ const Table = () => {
     // loading,
     // error,
     getTransactions,
-    removeTransaction,
+    // removeTransaction,
   } = useTransactions();
   useEffect(() => {
     getTransactions(1, 20);

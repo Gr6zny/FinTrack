@@ -96,14 +96,13 @@ export const createTransaction = createAsyncThunk<
 >("transaction/create", async (data, { rejectWithValue }) => {
   try {
     const token = localStorage.getItem("jwt");
-    const response = await apiClient<ITransaction, CreateTransactionData>(
+    const response = await apiClient<{ data: ITransaction }, { data: CreateTransactionData }>(
       "transactions",
       "POST",
-      data,
+      { data },
       { Authorization: `Bearer ${token}` },
     );
-    console.log(response);
-    return response;
+    return response.data;
   } catch (error) {
     return rejectWithValue(
       error instanceof Error ? error.message : "Ошибка создания транзакции",
@@ -114,22 +113,21 @@ export const createTransaction = createAsyncThunk<
 // Обновление транзакции
 export const updateTransaction = createAsyncThunk<
   ITransaction,
-  { id: number; data: Partial<CreateTransactionData> }, // ← изменили тип data
+  { id: number; data: Partial<CreateTransactionData> },
   { rejectValue: string }
 >("transaction/update", async ({ id, data }, { rejectWithValue }) => {
   try {
     const token = localStorage.getItem("jwt");
     const response = await apiClient<
-      ITransaction,
-      Partial<CreateTransactionData>
+      { data: ITransaction },
+      { data: Partial<CreateTransactionData> }
     >(
       `transactions/${id}`,
       "PUT",
-      data, // ← оберните data в { data } для Strapi формата
+      { data },
       { Authorization: `Bearer ${token}` },
     );
-    console.log(response);
-    return response;
+    return response.data;
   } catch (error) {
     return rejectWithValue(
       error instanceof Error ? error.message : "Ошибка обновления транзакции",
