@@ -6,6 +6,18 @@ import type {
   RegisterRequest,
 } from "./types/api.types";
 
+// Вспомогательная функция для сохранения данных авторизации
+const saveAuthData = (jwt: string, user: AuthResponse["user"]) => {
+  localStorage.setItem("jwt", jwt);
+  localStorage.setItem("user", JSON.stringify(user));
+};
+
+// Очистка данных авторизации (на случай ошибки)
+const clearAuthData = () => {
+  localStorage.removeItem("jwt");
+  localStorage.removeItem("user");
+};
+
 export const registerUser = createAsyncThunk<
   AuthResponse,
   RegisterRequest,
@@ -17,8 +29,15 @@ export const registerUser = createAsyncThunk<
       "POST",
       data,
     );
+
+    // Сохраняем токен и пользователя в localStorage
+    saveAuthData(res.jwt, res.user);
+
     return res;
   } catch (error) {
+    // В случае ошибки очищаем localStorage на всякий случай
+    clearAuthData();
+
     const message =
       error instanceof Error ? error.message : "Неизвестная ошибка";
     return rejectWithValue(message);
@@ -36,8 +55,15 @@ export const loginUser = createAsyncThunk<
       "POST",
       data,
     );
+
+    // Сохраняем токен и пользователя в localStorage
+    saveAuthData(res.jwt, res.user);
+
     return res;
   } catch (error) {
+    // В случае ошибки очищаем localStorage
+    clearAuthData();
+
     const message =
       error instanceof Error ? error.message : "Неизвестная ошибка";
     return rejectWithValue(message);

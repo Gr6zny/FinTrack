@@ -15,17 +15,21 @@ const HeaderMain = () => {
           <ul className={`${s.navLinks}`}>
             <li>
               <i className="fas fa-home"></i>
-              <a href="#" className={`${s.active}`}>
-                Главная
-              </a>
+              <Link to="/main">
+                <span>Главная</span>
+              </Link>
             </li>
             <li>
               <i className="fas fa-exchange-alt"></i>
-              <a href="#">Транзакции</a>
+              <Link to="/transaction">
+                <span>Транзакции</span>
+              </Link>
             </li>
             <li>
               <i className="fas fa-wallet"></i>
-              <a href="#">Счета</a>
+              <Link to="/transaction">
+                <span>Счета</span>
+              </Link>
             </li>
             <li>
               <i className="fas fa-chart-pie"></i>

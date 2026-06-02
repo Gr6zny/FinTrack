@@ -1,91 +1,93 @@
+import { useEffect } from "react";
+import { useTransactions } from "../hooks/useTransactions";
 import s from "./index.module.css";
 
-const transactions = [
-  {
-    id: 1,
-    amount: 2450,
-    type: "expense",
-    category: "food",
-    categoryName: "Продукты",
-    icon: "fa-utensils",
-    account: "tinkoff",
-    accountName: "Тинькофф Black",
-    date: "2024-03-15",
-    description: "Продукты в Пятерочке",
-  },
-  {
-    id: 2,
-    amount: 75000,
-    type: "income",
-    category: "salary",
-    categoryName: "Зарплата",
-    icon: "fa-briefcase",
-    account: "tinkoff",
-    accountName: "Тинькофф Black",
-    date: "2024-03-10",
-    description: "Зарплата за март",
-  },
-  {
-    id: 3,
-    amount: 4300,
-    type: "expense",
-    category: "transport",
-    categoryName: "Транспорт",
-    icon: "fa-car",
-    account: "cash",
-    accountName: "Наличные",
-    date: "2024-03-08",
-    description: "Заправка автомобиля",
-  },
-  {
-    id: 4,
-    amount: 799,
-    type: "expense",
-    category: "entertainment",
-    categoryName: "Развлечения",
-    icon: "fa-film",
-    account: "tinkoff",
-    accountName: "Тинькофф Black",
-    date: "2024-03-05",
-    description: "Подписка на Netflix",
-  },
-  {
-    id: 5,
-    amount: 15000,
-    type: "transfer",
-    category: "other",
-    categoryName: "Другое",
-    icon: "fa-exchange-alt",
-    account: "tinkoff",
-    accountName: "Тинькофф Black",
-    date: "2024-03-01",
-    description: "Перевод на сбережения",
-  },
-  {
-    id: 6,
-    amount: 3200,
-    type: "expense",
-    category: "utilities",
-    categoryName: "Коммунальные",
-    icon: "fa-home",
-    account: "sber",
-    accountName: "Сбербанк",
-    date: "2024-03-12",
-    description: "Квартплата",
-  },
-  {
-    id: 7,
-    amount: 5000,
-    type: "expense",
-    category: "food",
-    categoryName: "Продукты",
-    icon: "fa-utensils",
-    account: "tinkoff",
-    accountName: "Тинькофф Black",
-    date: "2024-03-14",
-    description: "Закупка продуктов",
-  },
-];
+// const transactions = [
+//   {
+//     id: 1,
+//     amount: 2450,
+//     type: "expense",
+//     category: "food",
+//     categoryName: "Продукты",
+//     icon: "fa-utensils",
+//     account: "tinkoff",
+//     accountName: "Тинькофф Black",
+//     date: "2024-03-15",
+//     description: "Продукты в Пятерочке",
+//   },
+//   {
+//     id: 2,
+//     amount: 75000,
+//     type: "income",
+//     category: "salary",
+//     categoryName: "Зарплата",
+//     icon: "fa-briefcase",
+//     account: "tinkoff",
+//     accountName: "Тинькофф Black",
+//     date: "2024-03-10",
+//     description: "Зарплата за март",
+//   },
+//   {
+//     id: 3,
+//     amount: 4300,
+//     type: "expense",
+//     category: "transport",
+//     categoryName: "Транспорт",
+//     icon: "fa-car",
+//     account: "cash",
+//     accountName: "Наличные",
+//     date: "2024-03-08",
+//     description: "Заправка автомобиля",
+//   },
+//   {
+//     id: 4,
+//     amount: 799,
+//     type: "expense",
+//     category: "entertainment",
+//     categoryName: "Развлечения",
+//     icon: "fa-film",
+//     account: "tinkoff",
+//     accountName: "Тинькофф Black",
+//     date: "2024-03-05",
+//     description: "Подписка на Netflix",
+//   },
+//   {
+//     id: 5,
+//     amount: 15000,
+//     type: "transfer",
+//     category: "other",
+//     categoryName: "Другое",
+//     icon: "fa-exchange-alt",
+//     account: "tinkoff",
+//     accountName: "Тинькофф Black",
+//     date: "2024-03-01",
+//     description: "Перевод на сбережения",
+//   },
+//   {
+//     id: 6,
+//     amount: 3200,
+//     type: "expense",
+//     category: "utilities",
+//     categoryName: "Коммунальные",
+//     icon: "fa-home",
+//     account: "sber",
+//     accountName: "Сбербанк",
+//     date: "2024-03-12",
+//     description: "Квартплата",
+//   },
+//   {
+//     id: 7,
+//     amount: 5000,
+//     type: "expense",
+//     category: "food",
+//     categoryName: "Продукты",
+//     icon: "fa-utensils",
+//     account: "tinkoff",
+//     accountName: "Тинькофф Black",
+//     date: "2024-03-14",
+//     description: "Закупка продуктов",
+//   },
+// ];
 
 const Table = () => {
   function getIconColor(type: string) {
@@ -93,6 +95,19 @@ const Table = () => {
     if (type === "expense") return "#f72585";
     return "#4895ef";
   }
+
+  const {
+    transactions,
+    // loading,
+    // error,
+    getTransactions,
+    removeTransaction,
+  } = useTransactions();
+  useEffect(() => {
+    getTransactions(1, 20);
+  }, []);
+
+  console.log(transactions);
 
   return (
     <div>
@@ -112,18 +127,18 @@ const Table = () => {
                   className={s.transactionIcon}
                   style={{ backgroundColor: getIconColor(t.type) }}
                 >
-                  <i className={`fas ${t.icon}`}></i>
+                  {/* <i className={`fas ${t.attributes.icon}`}></i> */}
                 </div>
 
                 <div className={s.transactionDetails}>
                   <h4>{t.description}</h4>
-                  <p>{t.accountName}</p>
+                  <p>{t.amount}</p>
                 </div>
               </div>
 
               <div className={s.transactionCategory}>
-                <i className={`fas ${t.icon}`}></i>
-                <span>{t.categoryName}</span>
+                {/* <i className={`fas ${t.icon}`}></i> */}
+                <span>{t.type}</span>
               </div>
 
               <div className={s.transactionDate}>{t.date}</div>
