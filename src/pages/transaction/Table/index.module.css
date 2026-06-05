@@ -1,5 +1,5 @@
 .transactionsSection {
-  background: white;
+  background: var(--bg-card);
   border-radius: var(--border-radius);
   overflow: hidden;
   box-shadow: var(--shadow);
@@ -9,10 +9,10 @@
   display: grid;
   grid-template-columns: 3fr 2fr 2fr 1fr;
   padding: 15px 20px;
-  background: var(--light-gray);
+  background: var(--bg-hover);
   font-weight: 600;
   font-size: 0.85rem;
-  color: var(--gray);
+  color: var(--text-secondary);
 }
 
 .transactionItem {
@@ -25,7 +25,7 @@
 }
 
 .transactionItem:hover {
-  background-color: var(--light);
+  background-color: var(--bg-hover);
 }
 
 .transactionInfo {
@@ -52,7 +52,7 @@
 
 .transactionDetails p {
   font-size: 0.8rem;
-  color: var(--gray);
+  color: var(--text-secondary);
 }
 
 .transactionAmount {
@@ -73,7 +73,7 @@
 }
 
 .transactionDate {
-  color: var(--gray);
+  color: var(--text-secondary);
   font-size: 0.85rem;
 }
 
@@ -94,7 +94,7 @@
 
 .actionIcon {
   cursor: pointer;
-  color: var(--gray);
+  color: var(--text-secondary);
   transition: var(--transition);
 }
 
@@ -123,5 +123,5 @@
 }
 
 .emptyState p {
-  color: var(--gray);
+  color: var(--text-secondary);
 }

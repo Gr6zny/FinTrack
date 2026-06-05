@@ -15,7 +15,7 @@
 }
 
 .transactionItem:hover {
-  background-color: var(--light-gray);
+  background-color: var(--bg-hover);
 }
 
 .expenseTransaction {
@@ -50,12 +50,20 @@
 
 .transactionDetails p {
   font-size: 0.9rem;
-  color: var(--gray);
+  color: var(--text-secondary);
 }
 
 .transactionAmount {
   font-weight: 600;
   font-size: 1.1rem;
+}
+
+.positive {
+  color: #28a745;
+}
+
+.negative {
+  color: var(--danger);
 }
 
 .expenseTransaction {

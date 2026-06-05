@@ -9,7 +9,7 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  background: white;
+  background: var(--bg-card);
   border-radius: var(--border-radius);
   padding: 20px;
   box-shadow: var(--shadow);
@@ -58,7 +58,7 @@
 
 .statLabel {
   font-size: 0.85rem;
-  color: var(--gray);
+  color: var(--text-secondary);
   margin-bottom: 4px;
 }
 

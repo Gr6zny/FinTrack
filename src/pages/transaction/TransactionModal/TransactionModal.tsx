@@ -10,6 +10,7 @@ interface TransactionModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSave: (data: CreateTransactionData) => Promise<ITransaction | null>;
+  initialType?: ITransaction["type"];
 }
 
 interface CategoryOption {
@@ -27,7 +28,7 @@ const TYPE_OPTIONS: { value: ITransaction["type"]; label: string; icon: string; 
   { value: "transfer", label: "Перевод", icon: "fa-exchange-alt", color: "#4895ef" },
 ];
 
-const TransactionModal = ({ isOpen, onClose, onSave }: TransactionModalProps) => {
+const TransactionModal = ({ isOpen, onClose, onSave, initialType }: TransactionModalProps) => {
   const dispatch = useAppDispatch();
   const { accounts } = useAppSelector((state) => state.account);
   const accountsFetched = useRef(false);
@@ -46,7 +47,7 @@ const TransactionModal = ({ isOpen, onClose, onSave }: TransactionModalProps) =>
 
   useEffect(() => {
     if (!isOpen) return;
-    setType("expense");
+    setType(initialType || "expense");
     setAmount("");
     setDate(new Date().toISOString().split("T")[0]);
     setDescription("");

@@ -1,4 +1,7 @@
 .minH {
   min-height: 80vh;
-  /* padding: 30px 0; */
+}
+
+.withPadding {
+  padding: 30px 0;
 }

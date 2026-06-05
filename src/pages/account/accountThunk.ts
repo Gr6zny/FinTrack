@@ -9,20 +9,13 @@ export const fetchAccounts = createAsyncThunk<
 >("account/fetchAll", async (_, { rejectWithValue }) => {
   try {
     const token = localStorage.getItem("jwt");
-    const userStr = localStorage.getItem("user");
-    const currentUser = userStr ? JSON.parse(userStr) : null;
-    const userId = currentUser?.id;
-
-    if (!userId) {
-      return rejectWithValue("Пользователь не авторизован");
-    }
-
-    const url = `accounts?filters[users_permissions_user][id][$eq]=${userId}`;
 
     const response = await apiClient<{
       data: IAccount[];
       meta: { pagination: { total: number } };
-    }>(url, "GET", undefined, { Authorization: `Bearer ${token}` });
+    }>(`accounts`, "GET", undefined, {
+      Authorization: `Bearer ${token}`,
+    });
 
     return response;
   } catch (error) {

@@ -29,7 +29,6 @@ export interface CreateAccountData {
   icon: string;
   color: string;
   is_active?: boolean;
-  users_permissions_user?: number;
 }
 
 export interface accountState {

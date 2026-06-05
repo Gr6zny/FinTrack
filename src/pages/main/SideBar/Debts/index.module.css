@@ -1,11 +1,86 @@
 .emptyState {
   text-align: center;
   padding: 40px 20px;
-  color: var(--gray);
+  color: var(--text-secondary);
 }
 
 .emptyState i {
   font-size: 3rem;
   margin-bottom: 15px;
   color: var(--light-gray);
+}
+
+.debtsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.debtItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: var(--bg-card);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: var(--transition);
+}
+
+.debtItem:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.debtInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.debtIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.1rem;
+}
+
+.debtOwe {
+  background-color: var(--danger);
+}
+
+.debtOweMe {
+  background-color: #28a745;
+}
+
+.debtDetails h4 {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 3px;
+}
+
+.debtDetails p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.debtDue {
+  font-size: 0.8rem;
+  color: var(--warning);
+}
+
+.debtAmount {
+  font-weight: 600;
+}
+
+.debtPositive {
+  color: #28a745;
+}
+
+.debtNegative {
+  color: var(--danger);
 }

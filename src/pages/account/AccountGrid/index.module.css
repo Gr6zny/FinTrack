@@ -18,7 +18,7 @@
 }
 
 .card {
-  background: white;
+  background: var(--bg-card);
   border-radius: var(--border-radius);
   padding: 20px;
   box-shadow: var(--shadow);
@@ -66,8 +66,8 @@
   height: 32px;
   border-radius: 8px;
   border: none;
-  background: var(--light);
-  color: var(--gray);
+  background: var(--bg-hover);
+  color: var(--text-secondary);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -94,12 +94,12 @@
   font-size: 1.1rem;
   font-weight: 600;
   margin-bottom: 4px;
-  color: var(--dark);
+  color: var(--text-primary);
 }
 
 .accountType {
   font-size: 0.85rem;
-  color: var(--gray);
+  color: var(--text-secondary);
 }
 
 .cardFooter {
@@ -112,7 +112,7 @@
 
 .balanceLabel {
   font-size: 0.8rem;
-  color: var(--gray);
+  color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -120,7 +120,7 @@
 .balanceValue {
   font-size: 1.25rem;
   font-weight: 700;
-  color: var(--dark);
+  color: var(--text-primary);
 }
 
 .inactiveBadge {
@@ -139,14 +139,14 @@
   grid-column: 1 / -1;
   text-align: center;
   padding: 60px 20px;
-  background: white;
+  background: var(--bg-card);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
 }
 
 .emptyState i {
   font-size: 3rem;
-  color: var(--gray);
+  color: var(--text-secondary);
   margin-bottom: 16px;
 }
 
@@ -154,10 +154,10 @@
   font-size: 1.3rem;
   font-weight: 600;
   margin-bottom: 8px;
-  color: var(--dark);
+  color: var(--text-primary);
 }
 
 .emptyState p {
-  color: var(--gray);
+  color: var(--text-secondary);
   font-size: 0.95rem;
 }

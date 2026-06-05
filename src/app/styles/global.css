@@ -12,9 +12,40 @@
   --gray: #6c757d;
   --light-gray: #e9ecef;
   --border-radius: 12px;
+  --transition: all 0.3s ease;
+
+  --bg-page: #f5f7fb;
+  --bg-card: #ffffff;
+  --bg-header: rgba(255, 255, 255, 0.95);
+  --bg-input: #ffffff;
+  --bg-hover: #f0f2f5;
+  --text-primary: #212529;
+  --text-secondary: #6c757d;
+  --text-inverse: #ffffff;
+  --border-color: #e9ecef;
   --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.1);
-  --transition: all 0.3s ease;
+
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --bg-page: #1a1d23;
+  --bg-card: #22262e;
+  --bg-header: rgba(34, 38, 46, 0.95);
+  --bg-input: #2d3139;
+  --bg-hover: #2d3139;
+  --text-primary: #e4e6eb;
+  --text-secondary: #a0a4ab;
+  --text-inverse: #ffffff;
+  --border-color: #343840;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.4);
+
+  --light: #2d3139;
+  --light-gray: #343840;
+
+  color-scheme: dark;
 }
 
 * {
@@ -25,9 +56,10 @@
 
 body {
   font-family: "Inter", sans-serif;
-  background-color: #f5f7fb;
-  color: var(--dark);
+  background-color: var(--bg-page);
+  color: var(--text-primary);
   line-height: 1.6;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 a {
@@ -36,11 +68,14 @@ a {
 }
 
 header {
-  background-color: white;
+  background-color: var(--bg-header);
   box-shadow: var(--shadow);
   position: sticky;
   top: 0;
   z-index: 100;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 .container {

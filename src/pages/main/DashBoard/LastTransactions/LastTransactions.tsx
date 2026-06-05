@@ -1,49 +1,88 @@
+import { useEffect } from "react";
+import { useTransactions } from "../../../transaction/hooks/useTransactions";
 import s from "./index.module.css";
 
+const typeIcons: Record<string, string> = {
+  expense: "fa-shopping-cart",
+  income: "fa-arrow-down",
+  transfer: "fa-exchange-alt",
+};
+
+const typeColors: Record<string, string> = {
+  expense: "var(--danger)",
+  income: "#28a745",
+  transfer: "var(--info)",
+};
+
+function formatDate(dateStr: string): string {
+  const d = new Date(dateStr);
+  return d.toLocaleDateString("ru-RU", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+}
+
+function formatAmount(amount: number, type: string): string {
+  const prefix = type === "expense" ? "-" : type === "income" ? "+" : "";
+  return `${prefix}${new Intl.NumberFormat("ru-RU").format(amount)} ₽`;
+}
+
 const LastTransactions = () => {
+  const { transactions, loadInitialTransactions } = useTransactions();
+
+  useEffect(() => {
+    loadInitialTransactions(5);
+  }, []);
+
+  const recentTransactions = transactions.slice(0, 5);
+
   return (
     <>
       <div className={s.transactionsList}>
-        {/* Здесь будет список последних транзакций, пока что статический
-          пример */}
-        <div className={s.transactionItem + " " + s.expenseTransaction}>
-          <div className={s.transactionInfo}>
-            <div className={s.transactionIcon}>
-              <i className="fas fa-utensils"></i>
+        {recentTransactions.length === 0 && (
+          <p style={{ color: "var(--gray)", textAlign: "center", padding: "20px 0" }}>
+            Нет транзакций
+          </p>
+        )}
+
+        {recentTransactions.map((tx) => {
+          const typeClass =
+            tx.type === "expense"
+              ? s.expenseTransaction
+              : tx.type === "income"
+                ? s.incomeTransaction
+                : s.transferTransaction;
+
+          const icon = tx.category?.icon
+            ? `fas fa-${tx.category.icon}`
+            : `fas ${typeIcons[tx.type] || "fa-exchange-alt"}`;
+
+          return (
+            <div key={tx.id} className={`${s.transactionItem} ${typeClass}`}>
+              <div className={s.transactionInfo}>
+                <div
+                  className={s.transactionIcon}
+                  style={{ backgroundColor: tx.category?.color || typeColors[tx.type] }}
+                >
+                  <i className={icon}></i>
+                </div>
+                <div className={s.transactionDetails}>
+                  <h4>{tx.description || tx.category?.name || "Без описания"}</h4>
+                  <p>
+                    {tx.category?.name ? `Категория: ${tx.category.name} • ` : ""}
+                    {formatDate(tx.date)}
+                  </p>
+                </div>
+              </div>
+              <div
+                className={`${s.transactionAmount} ${tx.type === "expense" ? s.negative : tx.type === "income" ? s.positive : ""}`}
+              >
+                {formatAmount(tx.amount, tx.type)}
+              </div>
             </div>
-            <div className={s.transactionDetails}>
-              <h4>Продукты в Пятерочке</h4>
-              <p>Категория: Продукты • 15 мая 2023</p>
-            </div>
-          </div>
-          <div className={s.transactionAmount + " " + s.negative}>-2,450 ₽</div>
-        </div>
-        <div className={s.transactionItem + " " + s.expenseTransaction}>
-          <div className={s.transactionInfo}>
-            <div className={s.transactionIcon}>
-              <i className="fas fa-utensils"></i>
-            </div>
-            <div className={s.transactionDetails}>
-              <h4>Продукты в Пятерочке</h4>
-              <p>Категория: Продукты • 15 мая 2023</p>
-            </div>
-          </div>
-          <div className={s.transactionAmount + " " + s.negative}>-2,450 ₽</div>
-        </div>
-        <div className={s.transactionItem + " " + s.expenseTransaction}>
-          <div className={s.transactionInfo}>
-            <div className={s.transactionIcon}>
-              <i className="fas fa-utensils"></i>
-            </div>
-            <div className={s.transactionDetails}>
-              <h4>Продукты в Пятерочке</h4>
-              <p>Категория: Продукты • 15 мая 2023</p>
-            </div>
-          </div>
-          <div className={s.transactionAmount + " " + s.negative}>-2,450 ₽</div>
-        </div>
-        {/* Здесь будет список последних транзакций, пока что статический
-          пример */}
+          );
+        })}
 
         <div className={s.viewAll}>
           <button

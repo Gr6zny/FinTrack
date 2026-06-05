@@ -18,7 +18,7 @@
 }
 
 .modal {
-  background: white;
+  background: var(--bg-card);
   border-radius: var(--border-radius);
   width: 100%;
   max-width: 500px;
@@ -50,7 +50,7 @@
 .modalHeader h2 {
   font-size: 1.25rem;
   font-weight: 700;
-  color: var(--dark);
+  color: var(--text-primary);
 }
 
 .closeBtn {
@@ -58,8 +58,8 @@
   height: 36px;
   border-radius: 8px;
   border: none;
-  background: var(--light);
-  color: var(--gray);
+  background: var(--bg-hover);
+  color: var(--text-secondary);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -94,7 +94,7 @@
 .label {
   font-size: 0.9rem;
   font-weight: 600;
-  color: var(--dark);
+  color: var(--text-primary);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -109,7 +109,7 @@
   font-family: "Inter", sans-serif;
   transition: var(--transition);
   outline: none;
-  background: white;
+  background: var(--bg-card);
 }
 
 .input:focus {
@@ -130,12 +130,12 @@
   padding: 12px 14px;
   border: 2px solid var(--light-gray);
   border-radius: 10px;
-  background: white;
+  background: var(--bg-card);
   cursor: pointer;
   transition: var(--transition);
   font-family: "Inter", sans-serif;
   font-size: 0.9rem;
-  color: var(--dark);
+  color: var(--text-primary);
 }
 
 .typeBtn:hover {
@@ -176,8 +176,8 @@
   padding: 10px 20px;
   border: 1px solid var(--light-gray);
   border-radius: 8px;
-  background: white;
-  color: var(--dark);
+  background: var(--bg-card);
+  color: var(--text-primary);
   font-weight: 500;
   cursor: pointer;
   transition: var(--transition);
@@ -185,7 +185,7 @@
 }
 
 .cancelBtn:hover {
-  background: var(--light);
+  background: var(--bg-hover);
 }
 
 .saveBtn {

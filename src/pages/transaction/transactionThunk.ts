@@ -15,41 +15,27 @@ export const fetchTransactions = createAsyncThunk<
   try {
     const token = localStorage.getItem("jwt");
 
-    // Получаем ID текущего пользователя
-    const userStr = localStorage.getItem("user");
-    const currentUser = userStr ? JSON.parse(userStr) : null;
-    const userId = currentUser?.id;
-
-    console.log("Current user ID:", userId);
-
-    if (!userId) {
-      return rejectWithValue("Пользователь не авторизован");
-    }
-
-    // ✅ ПРАВИЛЬНЫЙ СИНТАКСИС ДЛЯ STRAPI
-    let url = `transactions?filters[users_permissions_user][id][$eq]=${userId}`;
+    let url = `transactions?`;
 
     if (params?.filters) {
       const { type, category, account, startDate, endDate } = params.filters;
 
       if (type && type !== "all") {
-        url += `&filters[type][$eq]=${type}`;
+        url += `filters[type][$eq]=${type}&`;
       }
       if (category) {
-        url += `&filters[category][id][$eq]=${category}`;
+        url += `filters[category][id][$eq]=${category}&`;
       }
       if (account) {
-        url += `&filters[account_from][id][$eq]=${account}`;
+        url += `filters[account_from][id][$eq]=${account}&`;
       }
       if (startDate) {
-        url += `&filters[date][$gte]=${startDate}`;
+        url += `filters[date][$gte]=${startDate}&`;
       }
       if (endDate) {
-        url += `&filters[date][$lte]=${endDate}`;
+        url += `filters[date][$lte]=${endDate}&`;
       }
     }
-
-    console.log("Request URL:", url);
 
     const response = await apiClient<{
       data: ITransaction[];
@@ -167,8 +153,9 @@ export const fetchTransactionStats = createAsyncThunk<
 >("transaction/stats", async ({ startDate, endDate }, { rejectWithValue }) => {
   try {
     const token = localStorage.getItem("jwt");
+
     const response = await apiClient<{ data: ITransaction[] }>(
-      `transactions?filters[date][$gte]=${startDate}&filters[date][$lte]=${endDate}&populate[category][populate]=*`,
+      `transactions?filters[date][$gte]=${startDate}&filters[date][$lte]=${endDate}&populate=*`,
       "GET",
       undefined,
       { Authorization: `Bearer ${token}` },

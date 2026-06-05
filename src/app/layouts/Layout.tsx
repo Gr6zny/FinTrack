@@ -7,13 +7,17 @@ import HeaderMain from "./Header/HeaderMain/HeaderMain";
 const Layout = () => {
   const url = useLocation();
 
+  const isAuthPage = url.pathname === "/auth";
+  const isHomePage = url.pathname === "/";
+  const needsPadding = !isAuthPage && !isHomePage;
+
   return (
     <div>
-      {url.pathname === "/" && <HeaderHome />}
+      {isHomePage && <HeaderHome />}
 
-      {url.pathname !== "/" && url.pathname !== "/auth" && <HeaderMain />}
+      {!isHomePage && !isAuthPage && <HeaderMain />}
 
-      <div className={s.minH}>
+      <div className={`${s.minH} ${needsPadding ? s.withPadding : ""}`}>
         <Outlet />
       </div>
 
