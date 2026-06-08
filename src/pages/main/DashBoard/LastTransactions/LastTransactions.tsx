@@ -23,9 +23,9 @@ function formatDate(dateStr: string): string {
   });
 }
 
-function formatAmount(amount: number, type: string): string {
+function formatAmount(amount: number, type: string, currency?: string): string {
   const prefix = type === "expense" ? "-" : type === "income" ? "+" : "";
-  return `${prefix}${new Intl.NumberFormat("ru-RU").format(amount)} ₽`;
+  return `${prefix}${new Intl.NumberFormat("ru-RU").format(amount)} ${currency || "₽"}`;
 }
 
 const LastTransactions = () => {
@@ -78,7 +78,7 @@ const LastTransactions = () => {
               <div
                 className={`${s.transactionAmount} ${tx.type === "expense" ? s.negative : tx.type === "income" ? s.positive : ""}`}
               >
-                {formatAmount(tx.amount, tx.type)}
+                {formatAmount(tx.amount, tx.type, tx.account_from?.currency)}
               </div>
             </div>
           );

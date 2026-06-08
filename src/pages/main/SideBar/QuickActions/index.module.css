@@ -36,3 +36,23 @@
   font-weight: 500;
   font-size: 0.9rem;
 }
+
+@media (max-width: 480px) {
+  .quickActions {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .actionBtn {
+    padding: 14px 8px;
+  }
+
+  .actionBtn i {
+    font-size: 1.4rem;
+    margin-bottom: 6px;
+  }
+
+  .actionBtn span {
+    font-size: 0.8rem;
+  }
+}

@@ -927,6 +927,27 @@
   .submitButton {
     padding: 14px;
   }
+
+  .authContainer {
+    padding: 24px 16px;
+  }
+}
+
+@media (max-width: 400px) {
+  .authContainer {
+    padding: 20px 12px;
+    border-radius: 16px;
+  }
+
+  .authTitle {
+    font-size: 1.3rem;
+  }
+
+  .input,
+  .select {
+    padding: 12px 38px;
+    font-size: 0.9rem;
+  }
 }
 
 /* Анимации для иконок */

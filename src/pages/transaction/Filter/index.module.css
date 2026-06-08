@@ -71,3 +71,14 @@
 .resetBtn:hover {
   background-color: rgba(67, 97, 238, 0.1);
 }
+
+@media (max-width: 576px) {
+  .filtersSection {
+    padding: 14px;
+  }
+
+  .filtersGrid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}

@@ -7,6 +7,8 @@ import { MainPage } from "../../pages/main/MainPage";
 import Transaction from "../../pages/transaction/Transaction";
 import Account from "../../pages/account/Account";
 import Budget from "../../pages/budget/Budget";
+import Report from "../../pages/report/Report";
+import Profile from "../../pages/profile/Profile";
 import { ProtectedRoute } from "./ProtectedRoute";
 
 const router = createBrowserRouter([
@@ -31,6 +33,22 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <Budget />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/report",
+        element: (
+          <ProtectedRoute>
+            <Report />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/profile",
+        element: (
+          <ProtectedRoute>
+            <Profile />
           </ProtectedRoute>
         ),
       },

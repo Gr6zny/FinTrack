@@ -17,14 +17,27 @@ export interface IFormValue {
   [key: string]: string | undefined;
 }
 
+function loadUser(): StrapiUser | null {
+  try {
+    const raw = localStorage.getItem("user");
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+
+function loadJwt(): string {
+  return localStorage.getItem("jwt") || "";
+}
+
 const initialState: userState = {
   formValue: {
     username: "",
     password: "",
     email: "",
   },
-  user: null,
-  jwt: "",
+  user: loadUser(),
+  jwt: loadJwt(),
   loading: false,
   error: null,
 };
@@ -34,8 +47,12 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     logout(state) {
-      state.error = null;
+      state.user = null;
+      state.jwt = "";
       state.loading = false;
+      state.error = null;
+      localStorage.removeItem("jwt");
+      localStorage.removeItem("user");
     },
   },
 
@@ -71,4 +88,5 @@ const userSlice = createSlice({
   },
 });
 
+export const { logout } = userSlice.actions;
 export default userSlice.reducer;

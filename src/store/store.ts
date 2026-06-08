@@ -5,6 +5,7 @@ import accountSlice from "../pages/account/accountSlice";
 import budgetSlice from "../pages/budget/budgetSlice";
 import debtSlice from "../pages/main/SideBar/Debts/debtSlice";
 import paymentSlice from "../pages/main/SideBar/Payments/paymentSlice";
+import reportSlice from "../pages/report/reportSlice";
 
 const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
     budget: budgetSlice,
     debt: debtSlice,
     payment: paymentSlice,
+    report: reportSlice,
   },
 });
 

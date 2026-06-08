@@ -45,3 +45,18 @@
 .highUsage {
   background-color: var(--danger);
 }
+
+@media (max-width: 480px) {
+  .budgetHeader {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .budgetName {
+    font-size: 0.85rem;
+  }
+
+  .budgetAmount {
+    font-size: 0.8rem;
+  }
+}

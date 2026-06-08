@@ -5,3 +5,15 @@
 .withPadding {
   padding: 30px 0;
 }
+
+@media (max-width: 768px) {
+  .withPadding {
+    padding: 20px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .withPadding {
+    padding: 16px 0;
+  }
+}

@@ -258,3 +258,50 @@ input[type="range"].input {
   cursor: not-allowed;
   transform: none;
 }
+
+@media (max-width: 576px) {
+  .modal {
+    max-width: 100%;
+    margin: 10px;
+    max-height: 95vh;
+    border-radius: 16px;
+  }
+
+  .modalHeader {
+    padding: 16px 18px;
+  }
+
+  .modalHeader h2 {
+    font-size: 1.1rem;
+  }
+
+  .formBody {
+    padding: 18px;
+    gap: 16px;
+  }
+
+  .row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .periodGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+  }
+
+  .periodBtn {
+    padding: 8px 6px;
+    font-size: 0.8rem;
+  }
+
+  .modalFooter {
+    padding: 14px 18px;
+    flex-direction: column;
+  }
+
+  .modalFooter button {
+    width: 100%;
+    justify-content: center;
+  }
+}

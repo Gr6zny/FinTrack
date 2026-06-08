@@ -14,12 +14,22 @@ const navItems = [
   { path: "/transaction", icon: "fa-exchange-alt", label: "Транзакции" },
   { path: "/account", icon: "fa-wallet", label: "Счета" },
   { path: "/budget", icon: "fa-chart-pie", label: "Бюджеты" },
+  { path: "/report", icon: "fa-chart-simple", label: "Отчёты" },
 ];
+
+const CURRENCY_LABELS: Record<string, string> = {
+  RUB: "RUB",
+  USD: "USD",
+  EUR: "EUR",
+  GBP: "GBP",
+  CNY: "CNY",
+};
 
 const HeaderMain = () => {
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   const [user, setUser] = useState<UserInfo | null>(null);
+  const [currency, setCurrency] = useState("RUB");
 
   useEffect(() => {
     const userStr = localStorage.getItem("user");
@@ -30,6 +40,13 @@ const HeaderMain = () => {
         setUser(null);
       }
     }
+    setCurrency(localStorage.getItem("currency") || "RUB");
+
+    const handleStorage = () => {
+      setCurrency(localStorage.getItem("currency") || "RUB");
+    };
+    window.addEventListener("storage", handleStorage);
+    return () => window.removeEventListener("storage", handleStorage);
   }, []);
 
   const initials = user?.username
@@ -74,13 +91,13 @@ const HeaderMain = () => {
 
           <ThemeToggle />
 
-          <div className={s.userProfile}>
+          <Link to="/profile" className={s.userProfile}>
             <div className={s.avatar}>{initials}</div>
             <div className={s.userInfo}>
               <div className={s.userName}>{user?.username || "Пользователь"}</div>
-              <div className={s.userMeta}>Основная валюта: RUB</div>
+              <div className={s.userMeta}>Основная валюта: {CURRENCY_LABELS[currency] || currency}</div>
             </div>
-          </div>
+          </Link>
         </nav>
       </div>
     </header>

@@ -1,4 +1,3 @@
-// components/ProtectedRoute.tsx
 import { Navigate } from "react-router";
 import { useAppSelector } from "../../store/services/useAppSelector";
 
@@ -11,11 +10,13 @@ export const ProtectedRoute = ({
   children,
   redirectTo = "/auth",
 }: ProtectedRouteProps) => {
-  // Берем пользователя из Redux
   const { user, jwt } = useAppSelector((state) => state.user);
 
-  // Если нет токена или пользователя - редирект на страницу авторизации
-  if (!jwt || !user) {
+  const hasValidSession =
+    (jwt && user) ||
+    (!jwt && !user && localStorage.getItem("jwt") && localStorage.getItem("user"));
+
+  if (!hasValidSession) {
     return <Navigate to={redirectTo} replace />;
   }
 

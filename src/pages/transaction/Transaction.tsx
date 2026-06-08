@@ -17,7 +17,11 @@ const Transaction = () => {
   const [modalType, setModalType] = useState<ITransaction["type"] | undefined>();
   const [categoryModalOpen, setCategoryModalOpen] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
-  const { addTransaction } = useTransactions();
+  const { addTransaction, loadInitialTransactions } = useTransactions();
+
+  useEffect(() => {
+    loadInitialTransactions(20);
+  }, []);
 
   useEffect(() => {
     const typeParam = searchParams.get("type");
@@ -55,7 +59,7 @@ const Transaction = () => {
       </div>
       <InfoBlock />
       <Filter />
-      <Table key={refreshKey} />
+      <Table />
 
       <TransactionModal
         isOpen={modalOpen}

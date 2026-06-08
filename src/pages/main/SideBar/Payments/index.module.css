@@ -41,3 +41,23 @@
 .paymentAmount {
   font-weight: 600;
 }
+
+@media (max-width: 480px) {
+  .paymentItem {
+    padding: 10px 0;
+  }
+
+  .paymentIcon {
+    width: 30px;
+    height: 30px;
+    font-size: 0.8rem;
+  }
+
+  .paymentDetails h4 {
+    font-size: 0.85rem;
+  }
+
+  .paymentDetails p {
+    font-size: 0.75rem;
+  }
+}

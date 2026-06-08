@@ -54,3 +54,20 @@
 .loadingState i {
   font-size: 1.5rem;
 }
+
+@media (max-width: 768px) {
+  .pageHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .pageTitle {
+    font-size: 1.5rem;
+  }
+
+  .addButton {
+    width: 100%;
+    justify-content: center;
+  }
+}

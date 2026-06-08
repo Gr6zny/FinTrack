@@ -67,3 +67,34 @@
   background: rgba(67, 97, 238, 0.05);
   transform: translateY(-2px);
 }
+
+@media (max-width: 768px) {
+  .pageHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .pageTitle {
+    font-size: 1.5rem;
+  }
+
+  .headerActions {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .addButton,
+  .catManageBtn {
+    flex: 1;
+    justify-content: center;
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .headerActions {
+    flex-direction: column;
+  }
+}

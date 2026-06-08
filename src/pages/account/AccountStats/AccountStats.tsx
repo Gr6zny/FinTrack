@@ -6,7 +6,10 @@ interface AccountStatsProps {
 }
 
 const AccountStats = ({ accounts }: AccountStatsProps) => {
-  const totalBalance = accounts.reduce((sum, a) => sum + a.balance, 0);
+  const byCurrency = accounts.reduce<Record<string, number>>((acc, a) => {
+    acc[a.currency] = (acc[a.currency] || 0) + a.balance;
+    return acc;
+  }, {});
   const activeCount = accounts.filter((a) => a.is_active).length;
   const cardCount = accounts.filter((a) => a.type === "bank_card" || a.type === "credit_card").length;
   const savingsCount = accounts.filter((a) => a.type === "savings" || a.type === "investment").length;
@@ -19,9 +22,11 @@ const AccountStats = ({ accounts }: AccountStatsProps) => {
         </div>
         <div className={s.statInfo}>
           <span className={s.statLabel}>Общий баланс</span>
-          <span className={s.statValue}>
-            {totalBalance.toLocaleString()} ₽
-          </span>
+          {Object.entries(byCurrency).map(([cur, bal]) => (
+            <span key={cur} className={s.currencyRow}>
+              {bal.toLocaleString()} {cur}
+            </span>
+          ))}
         </div>
       </div>
 

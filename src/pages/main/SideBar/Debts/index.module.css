@@ -84,3 +84,23 @@
 .debtNegative {
   color: var(--danger);
 }
+
+@media (max-width: 480px) {
+  .debtItem {
+    padding: 12px;
+  }
+
+  .debtIcon {
+    width: 34px;
+    height: 34px;
+    font-size: 0.95rem;
+  }
+
+  .debtDetails h4 {
+    font-size: 0.85rem;
+  }
+
+  .debtDetails p {
+    font-size: 0.8rem;
+  }
+}
