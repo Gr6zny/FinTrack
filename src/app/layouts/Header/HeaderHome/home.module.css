@@ -4,6 +4,7 @@
   position: sticky;
   top: 0;
   z-index: 100;
+  overflow-x: hidden;
 }
 
 .container {
@@ -125,11 +126,15 @@
   transform: translateY(-7.5px) rotate(-45deg);
 }
 
+.mobileNavActions {
+  display: none;
+}
+
 @media (max-width: 900px) {
   .navLinks {
     position: fixed;
     top: 0;
-    right: -100%;
+    right: 0;
     width: 280px;
     height: 100vh;
     flex-direction: column;
@@ -137,12 +142,13 @@
     box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
     padding: 80px 20px 20px;
     gap: 4px;
-    transition: right 0.3s ease;
+    transition: transform 0.3s ease;
     z-index: 100;
+    transform: translateX(100%);
   }
 
   .navLinksOpen {
-    right: 0;
+    transform: translateX(0);
   }
 
   .navLinks a {
@@ -152,6 +158,10 @@
 
   .burger {
     display: flex;
+  }
+
+  .mobileNavActions {
+    display: block;
   }
 
   .navActions {

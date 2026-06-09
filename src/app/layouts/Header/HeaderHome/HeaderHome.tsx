@@ -65,7 +65,7 @@ const HeaderHome = () => {
             <li>
               <a href="#faq" onClick={() => setMenuOpen(false)}>FAQ</a>
             </li>
-            <li style={{ marginTop: "auto", paddingTop: 20 }}>
+            <li className={s.mobileNavActions} style={{ marginTop: "auto", paddingTop: 20 }}>
               <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                 {jwt ? (
                   <Link to="/main" onClick={() => setMenuOpen(false)}>
